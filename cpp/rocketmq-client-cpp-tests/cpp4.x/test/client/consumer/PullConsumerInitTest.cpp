@@ -33,6 +33,7 @@ TEST(PullConsumerInitTest, testNormalPullConsumer)
     SCOPED_TRACE("Start [PullConsumer] failed, expected success.");
     std::string groupId = getGroupId("testNoClientConfiguration");
     std::string topic = getTopic(MessageType::NORMAL, "testNoClientConfiguration", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     ASSERT_NO_THROW({
         rocketmq::DefaultMQPullConsumer consumer(groupId);
         consumer.setNamesrvAddr(resource->getNamesrv());

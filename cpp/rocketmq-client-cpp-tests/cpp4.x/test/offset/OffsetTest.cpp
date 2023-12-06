@@ -43,6 +43,7 @@ TEST(OffsetTest, testConsumeFromFisrtOffset)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testConsumeFromFisrtOffset", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group1 = getGroupId("testConsumeFromFisrtOffset1");
     std::string group2 = getGroupId("testConsumeFromFisrtOffset2");
     std::string tag = NameUtils::getRandomTagName();
@@ -114,6 +115,7 @@ TEST(OffsetTest, testConsumeFromFisrtOffset)
 TEST(OffsetTest, testConsumeFromLastOffset){
     int SEND_NUM = 100;
     std::string topic = getTopic(MessageType::NORMAL, "testConsumeFromLastOffset", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testConsumeFromLastOffset");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -158,6 +160,7 @@ TEST(OffsetTest, test_pull_receive_nack)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "test_pull_receive_nack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("test_pull_receive_nack");
     std::string tag = NameUtils::getRandomTagName();
 

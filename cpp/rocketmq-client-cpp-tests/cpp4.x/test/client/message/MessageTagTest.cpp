@@ -29,6 +29,7 @@ extern std::shared_ptr<Resource> resource;
 ////TEST(MessageTagTest, testMessageTagBeyond16KB){
 ////     SCOPED_TRACE("message tag beyond 16KB ,expect throw exception but it didn't");
 ////     std::string topic = getTopic(MessageType::NORMAL, "testMessageTagBeyond16KB", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testMessageTagBeyond16KB");
 ////     auto producer = ProducerFactory::getProducer(group);
 ////     producer->start();

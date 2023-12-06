@@ -36,6 +36,7 @@ extern std::shared_ptr<Resource> resource;
 TEST(DelayMessageTest, testDelay_Send_PushConsume){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::DELAY, "testDelay_Send_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testDelay_Send_PushConsume");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -61,6 +62,7 @@ TEST(DelayMessageTest, testDelay_Send_PushConsume){
 ////TEST(DelayMessageTest, testDelay_SendAsync_PushConsume){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::DELAY, "testDelay_SendAsync_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testDelay_SendAsync_PushConsume");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////
@@ -82,6 +84,7 @@ TEST(DelayMessageTest, testDelay_Send_PushConsume){
 ////TEST(DelayMessageTest, testDelayTime15SecondsAgo){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::DELAY, "testDelayTime15SecondsAgo", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testDelayTime15SecondsAgo");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////
@@ -98,6 +101,7 @@ TEST(DelayMessageTest, testDelay_Send_PushConsume){
 ////TEST(DelayMessageTest, testDelayTime24hAfter){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::DELAY, "testDelayTime24hAfter", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testDelayTime24hAfter");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////

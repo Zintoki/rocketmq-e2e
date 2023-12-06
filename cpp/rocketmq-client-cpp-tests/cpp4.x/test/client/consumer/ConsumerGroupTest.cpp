@@ -38,6 +38,7 @@ TEST(ConsumerGroupTest, testSystemInnerConsumerGroup)
 {
     std::string groupId = "DEFAULT_CONSUMER";
     std::string topic = getTopic(MessageType::NORMAL, "testSystemInnerConsumerGroup", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     ASSERT_THROW({
         rocketmq::DefaultMQPullConsumer consumer(groupId);
         consumer.setNamesrvAddr(resource->getNamesrv());

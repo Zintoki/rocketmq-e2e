@@ -20,9 +20,8 @@
 #include "utils/data/collect/DataCollectorManager.h"
 #include "client/rmq/RMQNormalConsumer.h"
 #include "utils/NameUtils.h"
-#include "boost/property_tree/ptree.hpp"
-#include "boost/property_tree/ini_parser.hpp"
 #include "spdlog/spdlog.h"
+#include <iostream>
 
 extern std::shared_ptr<spdlog::logger> multi_logger;
 extern std::shared_ptr<Resource> resource;
@@ -35,22 +34,27 @@ std::atomic<int> RMQNormalConsumer::receivedIndex(0);
 
 std::vector<rocketmq::MQMessageExt> VerifyUtils::msgs;
 
-void initResource(std::shared_ptr<Resource> resource)
+int initResource(std::shared_ptr<Resource> resource)
 {
-    boost::property_tree::ptree pt;
-    try
+    const char* grpc_endpoint = std::getenv("GRPC_ENDPOINT");
+    const char* namesrv = std::getenv("NAMESERVER");
+    const char* brokerAddr = std::getenv("BROKER_ADDR");
+    const char* cluster = std::getenv("CLUSTER_NAME");
+    const char* accessKey = std::getenv("ACCESS_KEY");
+    const char* secretKey = std::getenv("SECRET_KEY");
+
+    if (grpc_endpoint == nullptr || namesrv == nullptr || brokerAddr == nullptr )
     {
-        boost::property_tree::ini_parser::read_ini("config.ini", pt);
+        multi_logger->error("Unable to read env variables");
+        return 1;
     }
-    catch (boost::property_tree::ini_parser::ini_parser_error &e)
-    {
-        multi_logger->info("ini_parser_error: {}", e.what());
-    }
-    boost::property_tree::ini_parser::read_ini("config.ini", pt);
-    resource->setNamesrv(pt.get<std::string>("rocketmq.namesrv"));
-    resource->setBrokerAddr(pt.get<std::string>("rocketmq.brokerAddr"));
-    resource->setCluster(pt.get<std::string>("rocketmq.cluster"));
-    resource->setAccessKey(pt.get<std::string>("rocketmq.accessKey"));
-    resource->setSecretKey(pt.get<std::string>("rocketmq.secretKey"));
-    resource->setAccessChannel(pt.get<std::string>("rocketmq.accessChannel"));
+
+    resource->setGrpcEndpoint(grpc_endpoint);
+    resource->setNamesrv(namesrv);
+    resource->setBrokerAddr(brokerAddr);
+    resource->setCluster((cluster == nullptr | strcmp(cluster, "DefaultCluster") == 0) ? "" : cluster);
+    resource->setAccessKey(accessKey == nullptr ? "" : accessKey);
+    resource->setSecretKey(secretKey == nullptr ? "" : secretKey);
+    resource->setAccessChannel(""); // TODO: set access channel
+    return 0;
 }

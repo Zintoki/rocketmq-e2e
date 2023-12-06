@@ -37,6 +37,7 @@ extern std::shared_ptr<Resource> resource;
 TEST(NormalMessageTest, testNormal_Send_PushConsume){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testNormal_Send_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testNormal_Send_PushConsume");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -62,6 +63,7 @@ TEST(NormalMessageTest, testNormal_Send_PushConsume){
 ////TEST(NormalMessageTest, testNormal_SendAsync_PushConsume){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::NORMAL, "testNormal_SendAsync_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testNormal_SendAsync_PushConsume");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////

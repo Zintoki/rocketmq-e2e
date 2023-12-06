@@ -38,6 +38,7 @@ extern std::shared_ptr<Resource> resource;
 TEST(OrderMessageTest, testOrder_Send_PushConsumeOrderly){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::FIFO, "testOrder_Send_PushConsumeOrderly", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testOrder_Send_PushConsumeOrderly");
     std::string tag = NameUtils::getRandomTagName();
 

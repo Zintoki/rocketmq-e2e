@@ -41,6 +41,7 @@ TEST(PullOrderParamTest, testFIFO_pull_receive_nack)
 {
     int SEND_NUM = 20;
     std::string topic = getTopic(MessageType::FIFO, "testFIFO_pull_receive_nack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testFIFO_pull_receive_nack");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -74,6 +75,7 @@ TEST(PullOrderParamTest, testFIFO_pull_receive_multi_nack)
 {
     int SEND_NUM = 20;
     std::string topic = getTopic(MessageType::FIFO, "testFIFO_pull_receive_multi_nack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testFIFO_pull_receive_multi_nack");
     std::string tag = NameUtils::getRandomTagName();
 

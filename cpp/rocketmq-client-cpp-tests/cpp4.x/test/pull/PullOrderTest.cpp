@@ -41,6 +41,7 @@ TEST(PullOrderTest, testFIFO_pull_receive_ack)
 {
     int SEND_NUM = 20;
     std::string topic = getTopic(MessageType::FIFO, "testFIFO_pull_receive_ack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testFIFO_pull_receive_ack");
     std::string tag = NameUtils::getRandomTagName();
 

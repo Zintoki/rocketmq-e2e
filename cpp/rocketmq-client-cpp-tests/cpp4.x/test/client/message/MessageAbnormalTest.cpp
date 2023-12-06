@@ -28,6 +28,7 @@ extern std::shared_ptr<Resource> resource;
 
 //// TEST(MessageAbnormalTest, sendMsgBodyIsEmpty){
 ////     std::string topic = getTopic(MessageType::NORMAL, "sendMsgBodyIsEmpty", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::MQMessage msg(topic,"*","");
 ////     }, std::exception);
@@ -41,6 +42,7 @@ extern std::shared_ptr<Resource> resource;
 
 ////TEST(MessageAbnormalTest, sendMsgTopicIsEmpty){
 ////    std::string topic = getTopic(MessageType::NORMAL, "sendMsgTopicIsEmpty", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    ASSERT_THROW({
 ////        rocketmq::MQMessage msg(topic,"","body");
 ////    }, std::exception);

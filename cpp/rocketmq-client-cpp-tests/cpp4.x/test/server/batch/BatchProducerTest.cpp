@@ -42,6 +42,7 @@ extern std::shared_ptr<Resource> resource;
 TEST(BatchProducerTest, testBatchProducer){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testBatchProducer", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testBatchProducer");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -62,7 +63,7 @@ TEST(BatchProducerTest, testBatchProducer){
         ASSERT_EQ(sendResult.getSendStatus(),rocketmq::SEND_OK);
     });
 
-    long endTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()+240*1000L;
+    long endTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()+90*1000L;
     while(endTime > std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()){
         if(pushConsumer->getListener()->getDequeueMessages()->getDataSize() == SEND_NUM){
             break;
@@ -81,6 +82,7 @@ TEST(BatchProducerTest, testBatchProducer){
 TEST(BatchProducerTest, testBatchProducer_queue){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testBatchProducer_queue", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testBatchProducer_queue");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -106,7 +108,7 @@ TEST(BatchProducerTest, testBatchProducer_queue){
         ASSERT_EQ(sendResult.getSendStatus(),rocketmq::SEND_OK);
     });
 
-    long endTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()+240*1000L;
+    long endTime = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()+90*1000L;
     while(endTime > std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count()){
         if(pushConsumer->getListener()->getDequeueMessages()->getDataSize() == SEND_NUM){
             break;

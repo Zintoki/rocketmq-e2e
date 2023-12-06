@@ -28,6 +28,7 @@ extern std::shared_ptr<Resource> resource;
 
 ////TEST(MessageUserPropertyTest, testDelayMsgSize4MAdd1){
 ////     std::string topic = getTopic(MessageType::NORMAL, "testDelayMsgSize4MAdd1", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testDelayMsgSize4MAdd1");
 ////     auto producer = ProducerFactory::getProducer(group);
 ////     producer->start();

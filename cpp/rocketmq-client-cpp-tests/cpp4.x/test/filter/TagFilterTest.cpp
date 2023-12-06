@@ -45,6 +45,7 @@ TEST(TagFilterTest, testSendTagA_SubTagAorTagB)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSendTagA_SubTagAorTagB", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSendTagA_SubTagAorTagB");
     std::string sendTag = NameUtils::getRandomTagName();
     std::string receiveTag = sendTag + "||TagB";
@@ -73,6 +74,7 @@ TEST(TagFilterTest, testSndTagATagB_SubTagATagB)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSndTagATagB_SubTagATagB", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSndTagATagB_SubTagATagB");
     std::string sendTagA = NameUtils::getRandomTagName();
     std::string sendTagB = NameUtils::getRandomTagName();
@@ -103,6 +105,7 @@ TEST(TagFilterTest, testSendTagAAndTagB_SubAll)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSendTagAAndTagB_SubAll", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSendTagAAndTagB_SubAll");
     std::string sendTagA = NameUtils::getRandomTagName();
     std::string sendTagB = NameUtils::getRandomTagName();
@@ -131,6 +134,7 @@ TEST(TagFilterTest, testSendTagA_SubTagB)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSendTagA_SubTagB", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSendTagA_SubTagB");
     std::string sendTag = NameUtils::getRandomTagName();
     std::string receiveTag = NameUtils::getRandomTagName();
@@ -159,6 +163,7 @@ TEST(TagFilterTest, testSendTagA_SubTagA)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSendTagA_SubTagA", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSendTagA_SubTagA");
     std::string sendTagA = NameUtils::getRandomTagName();
     ASSERT_NO_THROW({
@@ -184,6 +189,7 @@ TEST(TagFilterTest, testLongTagSize)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testLongTagSize", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testLongTagSize");
     std::string sendTag = RandomUtils::getStringWithNumber(1024 * 10);
     ASSERT_NO_THROW({
@@ -209,6 +215,7 @@ TEST(TagFilterTest, testSubTagWithSpace)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSubTagWithSpace", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSubTagWithSpace");
     std::string sendTagA = NameUtils::getRandomTagName();
     std::string sendTagB = NameUtils::getRandomTagName();
@@ -236,6 +243,7 @@ TEST(TagFilterTest, testSubTagWithSpace)
 ////    int SEND_NUM = 10;
 ////    SCOPED_TRACE("Send messages with  tag \"|@\", Expected send() to throw exception, but it didn't");
 ////    std::string topic = getTopic(MessageType::NORMAL, "testTagWithSpecialSymbol01", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testTagWithSpecialSymbol01");
 ////
 ////    auto producer = ProducerFactory::getRMQProducer(group);
@@ -254,6 +262,7 @@ TEST(TagFilterTest, testTagWithSpecialSymbol02)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testTagWithSpecialSymbol02", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTagWithSpecialSymbol02");
     ASSERT_NO_THROW({
         auto pushConsumer = ConsumerFactory::getRMQPushConsumer(topic, group, "*", std::make_shared<RMQNormalListener>());
@@ -277,6 +286,7 @@ TEST(TagFilterTest, testTagWithSpecialSymbol03)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testTagWithSpecialSymbol03", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTagWithSpecialSymbol03");
     std::string sendTagA = NameUtils::getRandomTagName();
     std::string sendTagB = NameUtils::getRandomTagName();
@@ -302,6 +312,7 @@ TEST(TagFilterTest, testTagWithSpecialSymbol03)
 ////TEST(TagFilterTest, testTagWithBlankSymbol){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::NORMAL, "testTagWithBlankSymbol", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testTagWithBlankSymbol");
 ////    std::string sendTagA = "";
 ////    std::string sendTagB = " ";
@@ -326,6 +337,7 @@ TEST(TagFilterTest, testSendTagWithSameHashCode_SubWithOne)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testSendTagWithSameHashCode_SubWithOne", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testSendTagWithSameHashCode_SubWithOne");
     std::string sendTagA = "BB";
     std::string sendTagB = "Aa";
@@ -359,6 +371,7 @@ TEST(TagFilterTest, testTagCaseSensitive)
 {
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::NORMAL, "testTagCaseSensitive", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTagCaseSensitive");
     std::string sendTagA = "BB";
     std::string sendTagB = "bb";

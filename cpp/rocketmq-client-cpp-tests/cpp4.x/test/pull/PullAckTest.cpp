@@ -41,6 +41,7 @@ TEST(PullAckTest, testNormal_pull_receive_ack)
 {
     int SEND_NUM = 20;
     std::string topic = getTopic(MessageType::NORMAL, "testNormal_pull_receive_ack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testNormal_pull_receive_ack");
     std::string tag = NameUtils::getRandomTagName();
 

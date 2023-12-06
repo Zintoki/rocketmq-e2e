@@ -43,7 +43,12 @@ int main(int argc, char *argv[])
 
     // Read configuration file
     resource = std::make_shared<Resource>();
-    initResource(resource);
+    int init_result = initResource(resource);
+    if (init_result != 0)
+    {
+        multi_logger->error("Unable to read configuration file");
+        return 1;
+    }
 
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (sockfd == -1)

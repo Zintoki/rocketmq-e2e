@@ -20,6 +20,7 @@
 class Resource
 {
 private:
+    std::string grpc_endpoint;
     std::string namesrv;
     std::string brokerAddr;
     std::string cluster;
@@ -30,7 +31,7 @@ private:
 public:
     Resource() {}
 
-    Resource(std::string namesrv, std::string brokerAddr, std::string cluster, std::string accessKey, std::string secretKey, std::string accessChannel)
+    Resource(std::string& namesrv, std::string& brokerAddr, std::string& cluster, std::string& accessKey, std::string& secretKey, std::string& accessChannel)
         : namesrv(namesrv),
           brokerAddr(brokerAddr),
           cluster(cluster),
@@ -41,27 +42,31 @@ public:
     }
 
     // set
-    void setNamesrv(std::string namesrv)
+    void setGrpcEndpoint(const std::string& grpc_endpoint)
+    {
+        this->grpc_endpoint = grpc_endpoint;
+    }
+    void setNamesrv(const std::string& namesrv)
     {
         this->namesrv = namesrv;
     }
-    void setBrokerAddr(std::string brokerAddr)
+    void setBrokerAddr(const std::string& brokerAddr)
     {
         this->brokerAddr = brokerAddr;
     }
-    void setCluster(std::string cluster)
+    void setCluster(const std::string& cluster)
     {
         this->cluster = cluster;
     }
-    void setAccessKey(std::string accessKey)
+    void setAccessKey(const std::string& accessKey)
     {
         this->accessKey = accessKey;
     }
-    void setSecretKey(std::string secretKey)
+    void setSecretKey(const std::string& secretKey)
     {
         this->secretKey = secretKey;
     }
-    void setAccessChannel(std::string accessChannel)
+    void setAccessChannel(const std::string& accessChannel)
     {
         this->accessChannel = accessChannel;
     }

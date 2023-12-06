@@ -40,6 +40,7 @@ extern std::shared_ptr<Resource> resource;
 ////TEST(PullTopicTypeTest, testTrans_pull_receive_ackAsync){
 ////    int SEND_NUM = 10;
 ////    std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_pull_receive_ackAsync", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("testTrans_pull_receive_ackAsync");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////

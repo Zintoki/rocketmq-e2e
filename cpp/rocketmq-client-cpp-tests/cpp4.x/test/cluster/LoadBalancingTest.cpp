@@ -45,6 +45,7 @@ extern std::shared_ptr<Resource> resource;
 //  TEST(LoadBalancingTest, testLoadBalancing_normal_message){
 //      int SEND_NUM = 240;
 //      std::string topic = getTopic(MessageType::NORMAL, "testLoadBalancing_normal_message", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+//      ASSERT_NE(topic, "");
 //      std::string group = getGroupId("testLoadBalancing_normal_message");
 //      std::string tag = NameUtils::getRandomTagName();
 

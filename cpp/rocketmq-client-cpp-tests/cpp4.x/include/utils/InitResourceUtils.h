@@ -17,6 +17,7 @@
 #pragma once
 
 #include <memory>
+#include <cstdlib>
 #include "resource/Resource.h"
 
-void initResource(std::shared_ptr<Resource> resource);
+int initResource(std::shared_ptr<Resource> resource);

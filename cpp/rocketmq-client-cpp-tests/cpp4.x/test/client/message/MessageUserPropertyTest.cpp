@@ -29,6 +29,7 @@ extern std::shared_ptr<Resource> resource;
 ////TEST(MessageUserPropertyTest, testMessageUserPropertyBeyondSize128){
 ////     SCOPED_TRACE("message user property beyond limit 128 ,expect throw exception but it didn't");
 ////     std::string topic = getTopic(MessageType::NORMAL, "testMessageUserPropertyBeyondSize128", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testMessageUserPropertyBeyondSize128");
 ////     auto producer = ProducerFactory::getProducer(group);
 ////     producer->start();

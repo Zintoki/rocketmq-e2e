@@ -24,23 +24,29 @@ std::string getTopic(MessageType messageType, const std::string &methodName, con
   std::string messageTypeStr = MessageTypeToString[messageType];
   std::string topic = "topic_" + messageTypeStr + "_" + methodName + "_" + RandomUtils::getStringWithCharacter(6);
   multi_logger->info("[Topic] topic:{}, messageType:{}, methodName:{}", topic, messageTypeStr, methodName);
+  int result = 0;
   if (messageType == MessageType::NORMAL)
   {
-    MQAdminUtils::createTopic(topic, brokerAddr, "", namesrvAddr);
+    result = MQAdminUtils::createTopic(topic, brokerAddr, cluster, namesrvAddr);
   }
   else if (messageType == MessageType::DELAY)
   {
-    MQAdminUtils::createDelayTopic(topic, brokerAddr, "", namesrvAddr);
+    result = MQAdminUtils::createDelayTopic(topic, brokerAddr, cluster, namesrvAddr);
   }
   else if (messageType == MessageType::FIFO)
   {
-    MQAdminUtils::createFIFOTopic(topic, brokerAddr, "", namesrvAddr);
+    result = MQAdminUtils::createFIFOTopic(topic, brokerAddr, cluster, namesrvAddr);
   }
   else if (messageType == MessageType::TRANSACTION)
   {
-    MQAdminUtils::createTransactionTopic(topic, brokerAddr, "", namesrvAddr);
+    result = MQAdminUtils::createTransactionTopic(topic, brokerAddr, cluster, namesrvAddr);
   }
-
+  
+  if(result != 0)
+  {
+    multi_logger->error("[Topic] create topic failed, topic:{}, messageType:{}, methodName:{}", topic, messageTypeStr, methodName);
+    return "";
+  }
   return topic;
 }
 

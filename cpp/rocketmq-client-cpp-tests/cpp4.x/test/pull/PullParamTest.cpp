@@ -38,6 +38,7 @@ extern std::shared_ptr<Resource> resource;
 
 ////TEST(PullParamTest, test_waitAckException_reReceive_ack){
 ////    std::string topic = getTopic(MessageType::NORMAL, "test_waitAckException_reReceive_ack", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////    ASSERT_NE(topic, "");
 ////    std::string group = getGroupId("test_waitAckException_reReceive_ack");
 ////    std::string tag = NameUtils::getRandomTagName();
 ////
@@ -66,6 +67,7 @@ TEST(PullParamTest, testNormal_pull_receive_maxsize_sync)
 {
     int SEND_NUM = 300;
     std::string topic = getTopic(MessageType::NORMAL, "testNormal_pull_receive_maxsize_sync", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testNormal_pull_receive_maxsize_sync");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -100,6 +102,7 @@ TEST(PullParamTest, testNormal_pull_receive_multi_nack)
 {
     int SEND_NUM = 20;
     std::string topic = getTopic(MessageType::NORMAL, "testNormal_pull_receive_multi_nack", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testNormal_pull_receive_multi_nack");
     std::string tag = NameUtils::getRandomTagName();
 

@@ -43,6 +43,7 @@ extern std::shared_ptr<Resource> resource;
 //// TEST(SqlFilterTest, testSendWithTagAndPropsRecvWithOutFilter){
 ////     int SEND_NUM = 10;
 ////     std::string topic = getTopic(MessageType::NORMAL, "testSendWithTagAndPropsRecvWithOutFilter", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testSendWithTagAndPropsRecvWithOutFilter");
 ////     std::map<std::string, std::string> properties;
 ////     properties["regionId"] = "cn-hangzhou";
@@ -72,6 +73,7 @@ extern std::shared_ptr<Resource> resource;
 //// TEST(SqlFilterTest, testSqlSendTwoProps_SubFilterOne){
 ////     int SEND_NUM = 10;
 ////     std::string topic = getTopic(MessageType::NORMAL, "testSqlSendTwoProps_SubFilterOne", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testSqlSendTwoProps_SubFilterOne");
 ////     std::map<std::string, std::string> properties1;
 ////     properties1["price"] = "10";

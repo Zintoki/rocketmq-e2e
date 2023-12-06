@@ -708,7 +708,6 @@ bool VerifyUtils::waitFIFOParamReceiveThenAckExceptedLast(std::shared_ptr<RMQNor
             futures.push_back(std::async(std::launch::async, runnable));
         }
 
-        // 等待所有函数对象完成并获取结果
         for (auto &future : futures)
         {
             bool result = future.get();

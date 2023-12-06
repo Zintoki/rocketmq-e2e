@@ -36,6 +36,7 @@ TEST(PushConsumerInitTest, testNormalSetting)
     SCOPED_TRACE("Start [PushConsumer] failed, expected success.");
     std::string groupId = getGroupId("testNormalSetting");
     std::string topic = getTopic(MessageType::NORMAL, "testNormalSetting", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
+    ASSERT_NE(topic, "");
     ASSERT_NO_THROW({
         rocketmq::DefaultMQPushConsumer consumer(groupId);
         consumer.setNamesrvAddr(resource->getNamesrv());
@@ -55,6 +56,7 @@ TEST(PushConsumerInitTest, testNormalSetting)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = getGroupId("testErrorAK");
 ////     std::string topic = getTopic(MessageType::NORMAL, "testErrorAK", resource->getBrokerAddr(),resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         consumer.setNamesrvAddr(resource->getNamesrv());
@@ -95,7 +97,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
     SCOPED_TRACE("Start [PushConsumer] [Producer], expected success.");
     std::string groupId = getGroupId("testNormalNameserver");
     std::string topic = getTopic(MessageType::NORMAL, "testNormalNameserver", resource->getBrokerAddr(), resource->getNamesrv(), resource->getCluster());
-
+    ASSERT_NE(topic, "");
     rocketmq::DefaultMQPushConsumer consumer(groupId);
     consumer.setNamesrvAddr(resource->getNamesrv());
     consumer.setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
@@ -130,7 +132,8 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////TEST(PushConsumerInitTest, testErrorNameserver){
 ////    SCOPED_TRACE("Error setting the 'EndPoint' of the consumer client,expect start failed.");
 ////    std::string groupId = getGroupId("testErrorNameserver");
-////    std::string topic = "testErrorNameserver";
+////    std::string topic = "testErrorNameserver"; //create topic
+////    //ASSERT_NE(topic, "");
 ////    ASSERT_THROW({
 ////        rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////        consumer.setNamesrvAddr("https://www.aliyun.com");
@@ -150,6 +153,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = getGroupId("testErrorTopic");
 ////     std::string topic = "testErrorTopic";
+////     //ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         consumer.setNamesrvAddr(resource->getNamesrv());
@@ -168,6 +172,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = "123";
 ////     std::string topic = getTopic(MessageType::NORMAL, "testNoGroupId", resource->getBrokerAddr(),resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         consumer.setNamesrvAddr(resource->getNamesrv());
@@ -186,6 +191,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = "testNoSubscription";
 ////     std::string topic = getTopic(MessageType::NORMAL, "testNoSubscription", resource->getBrokerAddr(),resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         consumer.setNamesrvAddr(resource->getNamesrv());
@@ -203,6 +209,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = "testNoClientConfiguration";
 ////     std::string topic = getTopic(MessageType::NORMAL, "testNoClientConfiguration", resource->getBrokerAddr(),resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         MsgListener msglistener;
@@ -220,6 +227,7 @@ TEST(PushConsumerInitTest, testNormalNameserver)
 ////     SCOPED_TRACE("Expected Start [PushConsumer] ClientException to throw, but it didn't.");
 ////     std::string groupId = "testNoListener";
 ////     std::string topic = getTopic(MessageType::NORMAL, "testNoListener", resource->getBrokerAddr(),resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     ASSERT_THROW({
 ////         rocketmq::DefaultMQPushConsumer consumer(groupId);
 ////         consumer.subscribe(topic, "*");

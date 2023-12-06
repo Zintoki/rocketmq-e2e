@@ -151,6 +151,7 @@ public:
 TEST(PushConsumerRetryTest, testExceptionConsumption){
     int SEND_NUM = 5;
     std::string topic = getTopic(MessageType::NORMAL, "testExceptionConsumption", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testExceptionConsumption");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -191,6 +192,7 @@ TEST(PushConsumerRetryTest, testExceptionConsumption){
 //// TEST(PushConsumerRetryTest, testNullConsumption){
 ////     int SEND_NUM = 5;
 ////     std::string topic = getTopic(MessageType::NORMAL, "testNullConsumption", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+////     ASSERT_NE(topic, "");
 ////     std::string group = getGroupId("testNullConsumption");
 ////     std::string tag = NameUtils::getRandomTagName();
 ////     NullMsgListener* listener = new NullMsgListener();
@@ -222,6 +224,7 @@ TEST(PushConsumerRetryTest, testExceptionConsumption){
 TEST(PushConsumerRetryTest, testNormalTopicPushConsumerRetry){
     int SEND_NUM = 1;
     std::string topic = getTopic(MessageType::NORMAL, "testNormalTopicPushConsumerRetry", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testNormalTopicPushConsumerRetry");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -254,6 +257,8 @@ TEST(PushConsumerRetryTest, testNormalTopicPushConsumerRetry){
         }
         std::this_thread::sleep_for(std::chrono::seconds(5));
     }
+    ASSERT_EQ(listener->retryMsgs.size(),SEND_NUM);
+    ASSERT_EQ(listener->firstMsgs.size(),SEND_NUM);
 
     for(auto& msg : producer->getEnqueueMessages()->getAllData()){
         ASSERT_TRUE(listener->firstMsgs.contains(msg) && listener->retryMsgs.contains(msg));
@@ -267,6 +272,7 @@ TEST(PushConsumerRetryTest, testNormalTopicPushConsumerRetry){
 TEST(PushConsumerRetryTest, testFiFoTopicPushConsumerRetry){
     int SEND_NUM = 5;
     std::string topic = getTopic(MessageType::NORMAL, "testFiFoTopicPushConsumerRetry", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testFiFoTopicPushConsumerRetry");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -299,6 +305,8 @@ TEST(PushConsumerRetryTest, testFiFoTopicPushConsumerRetry){
         }
         std::this_thread::sleep_for(std::chrono::seconds(5));
     }
+    ASSERT_EQ(listener->recvMessages.size(),SEND_NUM);
+
     for (int i = 0; i < SEND_NUM; i++) {
         ASSERT_EQ(std::to_string(i), listener->recvMessages[i].getBody());
     }

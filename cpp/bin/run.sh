@@ -35,22 +35,18 @@ if [ "$DISTRO_LOWER" == "ubuntu" ] || [ "$DISTRO_LOWER" == "debian" ]; then
     PACKAGE_MANAGER="apt-get"
     INSTALL_COMMAND="sudo $PACKAGE_MANAGER install -y"
     $INSTALL_COMMAND libssl-dev libboost-all-dev libspdlog-dev libgtest-dev libfmt-dev libbz2-dev zlib1g-dev libc6-dev libpthread-stubs0-dev cmake automake g++ autoconf libtool
-elif [ "$DISTRO_LOWER" == "fedora" ] || [ "$DISTRO_LOWER" == "centos" ] || [ "$DISTRO_LOWER" == "rhel" ]; then
-    PACKAGE_MANAGER="dnf"
-    INSTALL_COMMAND="sudo $PACKAGE_MANAGER install -y"
-    $INSTALL_COMMAND openssl-devel boost-devel spdlog-devel gtest-devel fmt-devel bzip2-devel zlib-devel glibc-devel libpthread-stubs cmake automake g++ autoconf libtool
-elif [ "$DISTRO_LOWER" == "arch" ] || [ "$DISTRO_LOWER" == "manjaro" ]; then
-    PACKAGE_MANAGER="pacman"
-    INSTALL_COMMAND="sudo $PACKAGE_MANAGER -S --noconfirm"
-    $INSTALL_COMMAND openssl boost spdlog gtest fmt bzip2 zlib glibc libpthread-stubs cmake automake gcc autoconf libtool
 else
-    echo "Unrecognized distribution: $DISTRO"
+    echo "You need to install the corresponding package in distribution: $DISTRO"
     exit 1
 fi
 
 if [ ! -d "rocketmq-client-cpp-2.1.0" ]; then
     echo "rocketmq-client-cpp-2.1.0 folder does not exist, start to download and decompress..."
     curl -LO https://github.com/apache/rocketmq-client-cpp/archive/refs/tags/2.1.0.zip
+    if [ ! -f "2.1.0.zip" ]; then
+        echo "rocketmq-client-cpp-2.1.0.zip file does not exist"
+        exit 1
+    fi
     unzip 2.1.0.zip
     rm 2.1.0.zip
     echo "rocketmq-client-cpp-2.1.0 Download and decompress complete."
@@ -71,9 +67,8 @@ if [ ! -d "rocketmq-client-cpp-2.1.0/tmp_include_dir" ]; then
     cp -r rocketmq-client-cpp-2.1.0/include/* rocketmq-client-cpp-2.1.0/tmp_include_dir/rocketmq
 fi
 
-#设置环境变量ROCKETMQ_CPP_LIB为 pwd+/rocketmq-client-cpp-2.1.0/tmp_build_dir/librocketmq.a
 export ROCKETMQ_CPP_LIB=$(pwd)/rocketmq-client-cpp-2.1.0/tmp_build_dir
-#设置环境变量ROCKETMQ_CPP_INC为 pwd+/rocketmq-client-cpp-2.1.0/include
+
 export ROCKETMQ_CPP_INC=$(pwd)/rocketmq-client-cpp-2.1.0/tmp_include_dir
 
 echo "Installation complete!"
@@ -85,4 +80,4 @@ cd ../rocketmq-admintools && source bin/env.sh
 cd ../cpp/rocketmq-client-cpp-tests/cpp4.x
 cmake . -B build && cd build
 make -j && cd ..
-./rocketmq_test
+./rocketmq_test --gtest_output=xml:rocketmq_cpp_test.xml

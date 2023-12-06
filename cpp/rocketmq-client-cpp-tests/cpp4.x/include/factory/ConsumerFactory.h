@@ -38,7 +38,7 @@ public:
         rmqPushConsumer->setNamesrvAddr(resource->getNamesrv());
         rmqPushConsumer->setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
         rmqPushConsumer->setConsumeFromWhere(rocketmq::CONSUME_FROM_LAST_OFFSET);
-        rmqPushConsumer->setConsumeThreadCount(4);
+        rmqPushConsumer->setConsumeThreadCount(8);
         rmqPushConsumer->subscribe(topic, subExpression);
         rmqPushConsumer->registerMessageListener(msglistener.get());
         rmqPushConsumer->start();
@@ -51,7 +51,7 @@ public:
         rmqPushConsumer->setNamesrvAddr(resource->getNamesrv());
         rmqPushConsumer->setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
         rmqPushConsumer->setConsumeFromWhere(rocketmq::CONSUME_FROM_LAST_OFFSET);
-        rmqPushConsumer->setConsumeThreadCount(4);
+        rmqPushConsumer->setConsumeThreadCount(8);
         rmqPushConsumer->subscribe(topic, subExpression);
         rmqPushConsumer->registerMessageListener(listener.get());
         rmqPushConsumer->start();
@@ -65,7 +65,7 @@ public:
         rmqPushConsumer->setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
         rmqPushConsumer->setMessageModel(rocketmq::MessageModel::BROADCASTING);
         rmqPushConsumer->setConsumeFromWhere(rocketmq::CONSUME_FROM_LAST_OFFSET);
-        rmqPushConsumer->setConsumeThreadCount(4);
+        rmqPushConsumer->setConsumeThreadCount(8);
         rmqPushConsumer->subscribe(topic, subExpression);
         rmqPushConsumer->registerMessageListener(listener.get());
         rmqPushConsumer->start();
@@ -78,7 +78,7 @@ public:
         rmqPushConsumer->setNamesrvAddr(resource->getNamesrv());
         rmqPushConsumer->setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
         rmqPushConsumer->setConsumeFromWhere(rocketmq::CONSUME_FROM_LAST_OFFSET);
-        rmqPushConsumer->setConsumeThreadCount(4);
+        rmqPushConsumer->setConsumeThreadCount(8);
         rmqPushConsumer->subscribe(topic, subExpression);
         rmqPushConsumer->registerMessageListener(listener.get());
         rmqPushConsumer->start();
@@ -91,7 +91,7 @@ public:
         rmqPushConsumer->setNamesrvAddr(resource->getNamesrv());
         rmqPushConsumer->setSessionCredentials(resource->getAccessKey(), resource->getSecretKey(), resource->getAccessChannel());
         rmqPushConsumer->setConsumeFromWhere(rocketmq::CONSUME_FROM_LAST_OFFSET);
-        rmqPushConsumer->setConsumeThreadCount(4);
+        rmqPushConsumer->setConsumeThreadCount(8);
         rmqPushConsumer->subscribe(topic, subExpression);
         rmqPushConsumer->registerMessageListener(listener.get());
         rmqPushConsumer->start();

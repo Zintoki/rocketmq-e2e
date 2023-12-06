@@ -41,6 +41,7 @@ extern std::shared_ptr<Resource> resource;
 TEST(TransactionMessageTest, testTrans_SendCommit_PushConsume){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_SendCommit_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTrans_SendCommit_PushConsume");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -71,6 +72,7 @@ TEST(TransactionMessageTest, testTrans_SendCommit_PushConsume){
 TEST(TransactionMessageTest, testTrans_SendRollback_PushConsume){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_SendRollback_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTrans_SendRollback_PushConsume");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -103,6 +105,7 @@ TEST(TransactionMessageTest, testTrans_SendRollback_PushConsume){
 TEST(TransactionMessageTest, testTrans_SendCheckerCommit_PushConsume){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_SendCheckerCommit_PushConsume", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTrans_SendCheckerCommit_PushConsume");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -135,6 +138,7 @@ TEST(TransactionMessageTest, testTrans_SendCheckerCommit_PushConsume){
 TEST(TransactionMessageTest, testTrans_CheckerRollback){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_CheckerRollback", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTrans_CheckerRollback");
     std::string tag = NameUtils::getRandomTagName();
 
@@ -166,6 +170,7 @@ TEST(TransactionMessageTest, testTrans_CheckerRollback){
 TEST(TransactionMessageTest, testTrans_SendCheckerPartionCommit){
     int SEND_NUM = 10;
     std::string topic = getTopic(MessageType::TRANSACTION, "testTrans_SendCheckerPartionCommit", resource->getBrokerAddr(), resource->getNamesrv(),resource->getCluster());
+    ASSERT_NE(topic, "");
     std::string group = getGroupId("testTrans_SendCheckerPartionCommit");
     std::string tag = NameUtils::getRandomTagName();
 
