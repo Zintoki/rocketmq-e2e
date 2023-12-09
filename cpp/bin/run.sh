@@ -34,7 +34,7 @@ DISTRO_LOWER=$(echo "$DISTRO" | tr '[:upper:]' '[:lower:]')
 if [ "$DISTRO_LOWER" == "ubuntu" ] || [ "$DISTRO_LOWER" == "debian" ]; then
     PACKAGE_MANAGER="apt-get"
     INSTALL_COMMAND="sudo $PACKAGE_MANAGER install -y"
-    $INSTALL_COMMAND libssl-dev libboost-all-dev libspdlog-dev libgtest-dev libfmt-dev libbz2-dev zlib1g-dev libc6-dev libpthread-stubs0-dev cmake automake g++ autoconf libtool
+    $INSTALL_COMMAND libssl-dev libboost-all-dev libspdlog-dev libgtest-dev libfmt-dev libbz2-dev zlib1g-dev libc6-dev libpthread-stubs0-dev cmake automake g++ autoconf libtool curl wget
 else
     echo "You need to install the corresponding package in distribution: $DISTRO"
     exit 1
@@ -51,16 +51,21 @@ if [ ! -d "rocketmq-client-cpp-2.1.0" ]; then
     rm 2.1.0.zip
     echo "rocketmq-client-cpp-2.1.0 Download and decompress complete."
     cd rocketmq-client-cpp-2.1.0
+    sed -i '19i #include <string>' src/transport/EventLoop.h
     bash build.sh
     cd ..
 fi
 
 if [ ! -d "rocketmq-client-cpp-2.1.0/tmp_build_dir" ]; then
     if [ ! -f "rocketmq-client-cpp-2.1.0/tmp_build_dir/librocketmq.a" ]; then
-        echo "librocketmq.a file does not exist, start to build..."
+        echo "librocketmq.a file does not exist"
         exit 1
     fi
+elif [ ! -f "rocketmq-client-cpp-2.1.0/tmp_build_dir/librocketmq.a" ]; then
+    echo "librocketmq.a file does not exist"
+    exit 1
 fi
+
 
 if [ ! -d "rocketmq-client-cpp-2.1.0/tmp_include_dir" ]; then
     mkdir -p rocketmq-client-cpp-2.1.0/tmp_include_dir/rocketmq
